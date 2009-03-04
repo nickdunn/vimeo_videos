@@ -5,7 +5,7 @@
 			return array(
 				'name'			=> 'Vimeo Videos',
 				'version'		=> '0.1',
-				'release-date'	=> '2009-02-23',
+				'release-date'	=> '2009-03-04',
 				'author'		=> array(
 					'name'			=> 'Nick Dunn',
 					'website'		=> 'http://airlock.com',
