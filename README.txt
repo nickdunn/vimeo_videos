@@ -2,11 +2,10 @@
 Vimeo Video Field
 ------------------------------------
 
-Version: 1.0
+Version: 0.1
 Author: Nick Dunn (nick.dunn@airlock.com)
-Build Date: 2008-12-19
-Requirements: Symphony 2.0
-
+Build Date: 2009-02-23
+Requirements: Symphony 2.0.2
 
 [INSTALLATION]
 
