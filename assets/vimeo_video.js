@@ -1,14 +1,11 @@
-DOM.onready(function() {
-	
-	DOM.select("div.field-vimeo_video").forEach(function(e, index) {
-		var span = DOM.select("span", e)[0];
-		var a = DOM.select("a.change", e)[0];
-		var input = DOM.select("input.hidden", e)[0];
-		DOM.Event.addListener(a, "click", function() {
-			input.style.display = "block";
-			input.value = "";
-			span.style.display = "none";
-		});
-	});
-	
+jQuery(function($){
+	$('div.field-vimeo_video').each(function(){
+		var span = $(this).find('span');
+		var input = $(this).find('input.hidden');
+		$(this).find('a.change').click(function(){
+			input.css('display', 'block');
+			input.attr('value', '');
+			span.css('display', 'none');
+		})
+	})
 });
