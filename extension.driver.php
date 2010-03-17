@@ -36,7 +36,7 @@
 		public function fetchNavigation(){			
 			return array(
 				array(
-					'location'	=> 300,
+					'location'	=> __('System'),
 					'name'	=> 'Vimeo Videos',
 					'link'	=> '/videos/'
 				)
