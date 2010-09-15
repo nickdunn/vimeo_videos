@@ -1,11 +1,10 @@
-
 Vimeo Video Field
 ------------------------------------
 
 Version: 0.1
 Author: Nick Dunn (nick.dunn@airlock.com)
 Build Date: 2009-03-04
-Requirements: Symphony 2.0.2
+Requirements: Symphony 2.0.2 and the Advanced Symphony Database Connector (ASDC) Extension
 
 [INSTALLATION]
 
