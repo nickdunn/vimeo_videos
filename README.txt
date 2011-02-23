@@ -20,6 +20,9 @@ Requirements: Symphony 2.0.2
 2011-02-23
 - Added support for thumbnail sizes (large, medium, small) as well as thumbnail dimensinos. To enable
   this on a Symphony site which already uses Vimeo vidoes field the extension must be reinstalled.
+  
+  Note: the thumbnail dimensions is calculated based on the assumption that the largest thumbnail has
+  the same size as the video (which as far as I have been able to test, seems to be case).
 
 0.1
 - Initial release
