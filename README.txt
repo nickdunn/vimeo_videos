@@ -17,5 +17,9 @@ Requirements: Symphony 2.0.2
 
 [CHANGES]
 
+2011-02-23
+- Added support for thumbnail sizes (large, medium, small) as well as thumbnail dimensinos. To enable
+  this on a Symphony site which already uses Vimeo vidoes field the extension must be reinstalled.
+
 0.1
 - Initial release
