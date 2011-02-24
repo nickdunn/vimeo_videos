@@ -4,8 +4,10 @@ Class VimeoHelper {
 
 	public static function getClipId($data) {
 		
-		if (preg_match('/(.*)vimeo.com\/(?<id>[0-9]+)/i', $data, $match)) {
-			return $match['id']; // TODO: test regex
+		//if (preg_match('/(.*)vimeo.com\/(?<id>[0-9]+)/i', $data, $match)) {
+		$id = preg_replace('/^.*vimeo.com\/([0-9]+)$/', '$1' ,$data);
+		if(strval(intval($id)) === $id) {
+			return $id;
 		} else {
 			return $data;
 		}
