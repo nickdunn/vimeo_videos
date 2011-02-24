@@ -82,7 +82,7 @@ Class VimeoHelper {
 		$data = VimeoHelper::getClipInfo($clip_id);
 		if (!$data) return;
 		
-		$database->update($data, "sym_entries_data_{$field_id}", "entry_id={$entry_id}");
+		$database->update($data, "tbl_entries_data_{$field_id}", "entry_id={$entry_id}");
 		return $data;
 		
 	}
