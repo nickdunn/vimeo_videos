@@ -17,6 +17,10 @@ Requirements: Symphony 2.0.2
 
 [CHANGES]
 
+2011-02-24
+- Fixed compatability issue with preg_match().
+- Fixed table prefix bug which prevented cache from being updated if table prefix was not 'sym_'.
+
 2011-02-23
 - Added support for thumbnail sizes (large, medium, small) as well as thumbnail dimensinos. To enable
   this on a Symphony site which already uses Vimeo vidoes field the extension must be reinstalled.
