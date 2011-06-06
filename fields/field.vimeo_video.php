@@ -82,8 +82,8 @@
 				'plays' => $data['plays'],
 			));
 			
-			$video->appendChild(new XMLElement('title', $data['title']));
-			$video->appendChild(new XMLElement('caption', $data['caption']));
+			$video->appendChild(new XMLElement('title', General::sanitize($data['title'])));
+			$video->appendChild(new XMLElement('caption', General::sanitize($data['caption'])));
 			
 			$user = new XMLElement('user');
 			$user->appendChild(new XMLElement('name', $data['user_name']));
