@@ -235,6 +235,14 @@
 			
 		}
 		
+		public function preparePlainTextValue($data, $entry_id = null) {
+			return (
+				isset($data['title'])
+					? $data['title']
+					: null
+			);
+		}
+		
 		function createTable(){
 			return $this->_engine->Database->query(
 				"CREATE TABLE IF NOT EXISTS `tbl_entries_data_" . $this->get('id') . "` (
