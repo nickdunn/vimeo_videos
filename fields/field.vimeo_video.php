@@ -157,6 +157,7 @@
 				$clip_id->setAttribute('class', 'hidden');
 				
 				$video_container = new XMLElement('span');
+				$video_container->setAttribute('class', 'frame');
 				
 				$clip_url = 'http://www.vimeo.com/moogaloop.swf?clip_id=' . $value . '&amp;server=www.vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1';
 				
@@ -186,7 +187,7 @@
 				
 				$video->appendChild($embed);
 				
-				$meta = new XMLElement('span', $data['title'] . ' by <a href="' . $data["user_url"] . '">' . $data['title'] . '</a>');
+				$meta = new XMLElement('span', $data['title'] . ' by <a href="' . $data["user_url"] . '">' . $data['user_name'] . '</a>');
 				$meta->setAttribute('class', 'meta');
 				$video->appendChild($meta);
 				
