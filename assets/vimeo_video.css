@@ -31,10 +31,3 @@
 .field-vimeo_video input.hidden {
 	display: none;
 }
-
-span#update {
-	width: auto;
-	display: inline;
-	float: right;
-	font-size: 0.8em;
-}
