@@ -9,7 +9,7 @@
 			parent::__construct($parent);
 			$this->_name = 'Vimeo Video Field';
 			$this->_required = false;
-			$this->set('required', 'no');			
+			$this->set('required', 'no');
 		}
 		
 		function isSortable(){
@@ -18,7 +18,7 @@
 		
 		function canFilter(){
 			return true;
-		}		
+		}
 		
 		function checkPostFieldData($data, &$message, $entry_id=NULL){
 
@@ -41,7 +41,7 @@
 				return self::__INVALID_FIELDS__;
 			}
 			
-			return self::__OK__;							
+			return self::__OK__;
 		}
 		
 		public function processRawFieldData($data, &$status, $simulate = false, $entry_id = null) {
@@ -52,7 +52,7 @@
 			
 			$result = VimeoHelper::getClipInfo(VimeoHelper::getClipId($data));
 			
-			// HACK: couldn't figure out how to validate in checkPostFieldData() and then prevent 
+			// HACK: couldn't figure out how to validate in checkPostFieldData() and then prevent
 			// this processRawFieldData function executing, since it requires valid data to load the XML
 			if (!is_array($result)) {
 				$message = "Failed to load clip XML";
@@ -82,8 +82,8 @@
 				'plays' => $data['plays'],
 			));
 			
-			$video->appendChild(new XMLElement('title', $data['title']));
-			$video->appendChild(new XMLElement('caption', $data['caption']));
+			$video->appendChild(new XMLElement('title', General::sanitize($data['title'])));
+			$video->appendChild(new XMLElement('caption', General::sanitize($data['caption'])));
 			
 			$user = new XMLElement('user');
 			$user->appendChild(new XMLElement('name', $data['user_name']));
@@ -93,10 +93,29 @@
 			$thumbnail->setAttributeArray(array(
 				'width' => $data['thumbnail_width'],
 				'height' => $data['thumbnail_height'],
+				'size' => 'large',
 			));
 			$thumbnail->appendChild(new XMLElement('url', $data['thumbnail_url']));
-			
 			$video->appendChild($thumbnail);
+			
+			$thumbnail = new XMLElement('thumbnail');
+			$thumbnail->setAttributeArray(array(
+				'width' => $data['thumbnail_medium_width'],
+				'height' => $data['thumbnail_medium_height'],
+				'size' => 'medium',
+			));
+			$thumbnail->appendChild(new XMLElement('url', $data['thumbnail_medium_url']));
+			$video->appendChild($thumbnail);
+			
+			$thumbnail = new XMLElement('thumbnail');
+			$thumbnail->setAttributeArray(array(
+				'width' => $data['thumbnail_small_width'],
+				'height' => $data['thumbnail_small_height'],
+				'size' => 'small',
+			));
+			$thumbnail->appendChild(new XMLElement('url', $data['thumbnail_small_url']));
+			$video->appendChild($thumbnail);
+			
 			$video->appendChild($user);
 			
 			$wrapper->appendChild($video);
@@ -116,7 +135,7 @@
 			$fields['refresh'] = $refresh;
 
 			$this->_engine->Database->query("DELETE FROM `tbl_fields_".$this->handle()."` WHERE `field_id` = '$id' LIMIT 1");
-			return $this->_engine->Database->insert($fields, 'tbl_fields_' . $this->handle());					
+			return $this->_engine->Database->insert($fields, 'tbl_fields_' . $this->handle());
 			
 		}
 		
@@ -138,6 +157,7 @@
 				$clip_id->setAttribute('class', 'hidden');
 				
 				$video_container = new XMLElement('span');
+				$video_container->setAttribute('class', 'frame');
 				
 				$clip_url = 'http://www.vimeo.com/moogaloop.swf?clip_id=' . $value . '&amp;server=www.vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00ADEF&amp;fullscreen=1';
 				
@@ -167,13 +187,13 @@
 				
 				$video->appendChild($embed);
 				
-				$meta = new XMLElement('span', $data['title'] . ' by <a href="' . $data["user_url"] . '">' . $data['title'] . '</a>');
+				$meta = new XMLElement('span', $data['title'] . ' by <a href="' . $data["user_url"] . '">' . $data['user_name'] . '</a>');
 				$meta->setAttribute('class', 'meta');
 				$video->appendChild($meta);
 				
 				$meta = new XMLElement('span', $data['plays'] . ' plays');
-				$meta->setAttribute('class', 'meta');	
-				$video->appendChild($meta);				
+				$meta->setAttribute('class', 'meta');
+				$video->appendChild($meta);
 				
 				$change = new XMLElement('a', 'Remove Video');
 				$change->setAttribute('class', 'change');
@@ -215,6 +235,14 @@
 			
 		}
 		
+		public function preparePlainTextValue($data, $entry_id = null) {
+			return (
+				isset($data['title'])
+					? $data['title']
+					: null
+			);
+		}
+		
 		function createTable(){
 			return $this->_engine->Database->query(
 				"CREATE TABLE IF NOT EXISTS `tbl_entries_data_" . $this->get('id') . "` (
@@ -226,6 +254,12 @@
 				`thumbnail_url` varchar(255) default NULL,
 				`thumbnail_width` int(11) unsigned NOT NULL,
 				`thumbnail_height` int(11) unsigned NOT NULL,
+				`thumbnail_medium_url` varchar(255) default NULL,
+				`thumbnail_medium_width` int(11) unsigned NOT NULL,
+				`thumbnail_medium_height` int(11) unsigned NOT NULL,
+				`thumbnail_small_url` varchar(255) default NULL,
+				`thumbnail_small_width` int(11) unsigned NOT NULL,
+				`thumbnail_small_height` int(11) unsigned NOT NULL,
 				`width` int(11) unsigned NOT NULL,
 				`height` int(11) unsigned NOT NULL,
 				`duration` int(11) unsigned NOT NULL,
@@ -235,12 +269,12 @@
 				`last_updated` int(11) unsigned NOT NULL,
 				PRIMARY KEY  (`id`),
 				KEY `entry_id` (`entry_id`)
-				);"			
+				);"
 			);
 		}
 		
 		public function displaySettingsPanel(&$wrapper, $errors=NULL){
-			parent::displaySettingsPanel($wrapper, $errors);			
+			parent::displaySettingsPanel($wrapper, $errors);
 			$this->appendRequiredCheckbox($wrapper);
 			$this->appendShowColumnCheckbox($wrapper);
 			

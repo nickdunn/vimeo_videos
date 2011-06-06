@@ -1,32 +1,33 @@
-.field-vimeo_video span {
+.field-vimeo_video span.frame {
+	margin: 0;
+	overflow: hidden;
 	position: relative;
+	text-align: right;
 }
 
 .field-vimeo_video a.change {
-	position: absolute;
-	bottom: 1em;
-	right: 1em;
 	color: #999;
+	white-space: nowrap;
 }
-
 .field-vimeo_video a.change:hover {
 	color: #d43;
 }
 
+.field-vimeo_video embed,
+.field-vimeo_video object {
+	display: block;
+	margin: 0 0 1em 0;
+	width: 100%;
+}
+
 .field-vimeo_video span.meta {
+	background: transparent;
+	border: none !important;
+	float: left;
+	margin: 0 0.8em 0 0;
 	padding: 0;
-	border: none;
-	background-color: transparent;
-	margin: 1em 4em 0 0;
 }
 
 .field-vimeo_video input.hidden {
 	display: none;
-}
-
-span#update {
-	width: auto;
-	display: inline;
-	float: right;
-	font-size: 0.8em;
 }
