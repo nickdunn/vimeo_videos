@@ -70,14 +70,6 @@
 			
 			$this->addStylesheetToHead(URL . '/extensions/vimeo_videos/assets/vimeo_video.css', 'screen', 190);
 			
-			/*
-			$update = new XMLElement('span', '<input type="submit" value="Update video info" name="update" />');
-			$update->setAttribute('id', 'update');
-			
-			$heading = new XMLElement('h2', $update->generate() . 'Vimeo Videos (ordered by most plays)');
-			$this->Form->appendChild($heading);
-			*/
-			
 			$this->appendSubheading(__('Vimeo Videos (ordered by most plays)'));
 			
 			$aTableHead = array(
