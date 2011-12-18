@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="vimeo_videos" status="deprecated" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Vimeo Videos</name>
+	<description>Makes embedding Vimeo videos onto your site easy-peasy</description>
+	<repo type="github">https://github.com/nickdunn/vimeo_videos</repo>
+	<url type="discuss">http://symphony-cms.com/discuss/thread/758/</url>
+	<types>
+		<type>Field</type>
+		<type>Third Party Integration</type>
+	</types>
+	<authors>
+		<author>
+			<name github="nickdunn" symphony="nickdunn">Nick Dunn</name>
+			<website>http://nick-dunn.co.uk</website>
+		</author>
+	</authors>
+	<media>
+		<item type="image" url="http://symphonyextensions.com/nickdunn/vimeo_videos/media/vimeo_videos.png">Vimeo Videos: Makes embedding Vimeo videos onto your site easy-peasy</item>
+	</media>
+	<dependencies>
+		<dependency>asdc</dependency>
+	</dependencies>
+	<releases>
+		<release version="0.1" date="2009-03-03" min="2.0.4" />
+	</releases>
+</extension>
